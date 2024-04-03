@@ -1,25 +1,41 @@
-const movies = [
-  {
-    id: 1,
-    adult: false,
-    backdrop_path: "/sR0SpCrXamlIkYMdfz83sFn5JS6.jpg",
-    genre_ids: [3], // Example genre ids
-    original_language: "en",
-    original_title: "Godzilla x Kong: The New Empire",
-    overview:
-      "Following their explosive showdown, Godzilla and Kong must reunite against a colossal undiscovered threat hidden within our world, challenging their very existence – and our own.",
-    popularity: 5072.084,
-    poster_path: "/gmGK5Gw5CIGMPhOmTO0bNA9Q66c.jpg",
-    release_date: "2024-03-27",
-    title: "Godzilla x Kong: The New Empire",
-    video: false,
-    vote_average: 7.8,
-    vote_count: 236,
-  },
+// Import the fetchMovies function from fetchdata.js
+const fetchMovies = require("./fetchdata.js");
 
-  // Add more movie objects as needed
-];
+// Placeholder movies array
+let movies = [];
 
+// Function to fetch movie data
+async function updateMovies() {
+  try {
+    // Call fetchMovies function to get the movie data
+    const fetchedMovies = await fetchMovies();
+
+    // Update the movies array with the fetched movies
+    movies = fetchedMovies;
+    //console.log("place movies", movies);
+    // Return the fetched movies
+    return fetchedMovies;
+  } catch (error) {
+    console.error("Error getting movies:", error);
+    throw error;
+  }
+}
+
+// Export function to get movies and update the movies array
 module.exports = {
-  movies,
+  updateMovies,
+  get movies() {
+    return movies;
+    //console.log("export", movies);
+  },
 };
+
+// Call the updateMovies function to fetch movies and update the movies array
+updateMovies()
+  .then((fetchedMovies) => {
+    //console.log("export", movies);
+    console.log("Movies fetched successfully.");
+  })
+  .catch((error) => {
+    console.error("Error fetching movies:", error);
+  });

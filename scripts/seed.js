@@ -11,6 +11,7 @@ async function seedMovies(client) {
         adult BOOLEAN NOT NULL,
         backdrop_path VARCHAR(255),
         genre_ids INTEGER[],
+        ids INTEGER ,
         original_language VARCHAR(10),
         original_title VARCHAR(255) NOT NULL,
         overview TEXT,
@@ -30,8 +31,8 @@ async function seedMovies(client) {
       movies.map(async (movie) => {
         return client.query(
           `
-          INSERT INTO movies (id, adult, backdrop_path, genre_ids, original_language, original_title, overview, popularity, poster_path, release_date, title, video, vote_average, vote_count)
-          VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)
+          INSERT INTO movies (id, adult, backdrop_path, genre_ids,ids, original_language, original_title, overview, popularity, poster_path, release_date, title, video, vote_average, vote_count)
+          VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)
           ON CONFLICT (id) DO NOTHING;
         `,
           [
@@ -39,6 +40,7 @@ async function seedMovies(client) {
             movie.adult,
             movie.backdrop_path,
             movie.genre_ids,
+            movie.ids,
             movie.original_language,
             movie.original_title,
             movie.overview,
