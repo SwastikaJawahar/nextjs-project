@@ -18,7 +18,7 @@ async function fetchMovies() {
     const fetchedMovies = response.data.results;
 
     // Process or display the fetched movie data
-    console.log("Fetched movies:", fetchedMovies);
+    //console.log("Fetched movies:", fetchedMovies);
 
     return fetchedMovies;
   } catch (error) {
