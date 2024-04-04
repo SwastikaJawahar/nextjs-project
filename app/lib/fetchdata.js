@@ -13,13 +13,7 @@ async function fetchMovies() {
 
     // Make GET request to the API endpoint
     const response = await axios.get(url, { headers });
-
-    // Extract movie data from the response
     const fetchedMovies = response.data.results;
-
-    // Process or display the fetched movie data
-    //console.log("Fetched movies:", fetchedMovies);
-
     return fetchedMovies;
   } catch (error) {
     console.error("Error fetching movies:", error);
