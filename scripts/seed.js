@@ -1,5 +1,5 @@
 const { db } = require("@vercel/postgres");
-const { updateMovies } = require("../app/lib/placeholder-data.js");
+const { movies } = require("../app/lib/placeholder-data.js");
 
 async function seedMovies(client) {
   try {
@@ -27,7 +27,7 @@ async function seedMovies(client) {
     console.log(`Created "movies" table`);
 
     // Fetch movies using the updateMovies function
-    const movies = await updateMovies();
+    //const movies = await updateMovies();
 
     // Insert data into the "movies" table
     const insertedMovies = await Promise.all(
