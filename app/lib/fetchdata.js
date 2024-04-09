@@ -1,24 +1,24 @@
-const axios = require("axios");
+import { sql } from "@vercel/postgres";
+import { unstable_noStore as noStore } from "next/cache";
+import { movies } from "./definitions";
 
-// Function to fetch movie data
-async function fetchMovies() {
+export async function fetchMovies() {
+  noStore();
   try {
-    const url =
-      "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1";
-    const headers = {
-      accept: "application/json",
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1ZjY5OGFkYWQ4NzYyZjYxZTI1OWU5ZDI4ZDI0NWFmYSIsInN1YiI6IjY2MGJkYTE0MTQ5NTY1MDE3ZGJiMTYwMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.M0u6nNOddgvZDONejLMGujk6_CdtDJ5URzwXYYimbMw",
-    };
+    console.log("Fetching movies data...");
+    await new Promise((resolve) => setTimeout(resolve, 3000));
 
-    // Make GET request to the API endpoint
-    const response = await axios.get(url, { headers });
-    const fetchedMovies = response.data.results;
-    return fetchedMovies;
+    const data = await sql`SELECT * FROM movies`;
+    const formattedMovies = data.rows.map((movie) => ({
+      ...movie,
+      release_date: movie.release_date.toISOString(), // Convert release_date to string
+    }));
+
+    console.log("Data fetch completed after 3 seconds.");
+
+    return formattedMovies;
   } catch (error) {
-    console.error("Error fetching movies:", error);
-    throw error;
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch movies data.");
   }
 }
-
-module.exports = fetchMovies;
