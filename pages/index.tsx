@@ -42,8 +42,8 @@ export default async function MoviesPage({
       <div className="mt-5 flex w-full justify-center">
         <Pagination
           totalPages={totalPages}
-          initialPage={currentPage}
-          onPageChange={handlePageChange}
+          // initialPage={currentPage}
+          // onPageChange={handlePageChange}
         />
       </div>
     </div>
