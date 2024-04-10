@@ -16,10 +16,6 @@ export const generatePagination = (currentPage: number, totalPages: number) => {
   if (currentPage >= totalPages - 2) {
     return [1, 2, "...", totalPages - 2, totalPages - 1, totalPages];
   }
-
-  // If the current page is somewhere in the middle,
-  // show the first page, an ellipsis, the current page and its neighbors,
-  // another ellipsis, and the last page.
   return [
     1,
     "...",
@@ -29,4 +25,26 @@ export const generatePagination = (currentPage: number, totalPages: number) => {
     "...",
     totalPages,
   ];
+};
+export function formatDate(dateString: string): string {
+  const date = new Date(dateString);
+  const options: Intl.DateTimeFormatOptions = {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
+  return date.toLocaleDateString("en-US", options);
+}
+export const formatDateToLocal = (
+  dateStr: string,
+  locale: string = "en-US"
+) => {
+  const date = new Date(dateStr);
+  const options: Intl.DateTimeFormatOptions = {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  };
+  const formatter = new Intl.DateTimeFormat(locale, options);
+  return formatter.format(date);
 };

@@ -2,7 +2,7 @@ export type movie = {
   id: number;
   adult: boolean;
   backdrop_path: string;
-  genre_ids: number;
+  genre_ids: number[];
   original_language: string;
   original_title: string;
   overview: string;
