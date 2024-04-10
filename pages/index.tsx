@@ -33,11 +33,15 @@ export default async function MoviesPage({
       <div className="mt-4 flex items-center justify-between gap-2 md:mt-8">
         <Search placeholder="Search movies..." />
       </div>
+<<<<<<< Updated upstream
       {
         <Suspense key={query + currentPage} fallback={<MoviesTableSkeleton />}>
           <MoviesTable query={query} currentPage={currentPage} />
         </Suspense>
       }
+=======
+      <MoviesTable query={query} currentPage={currentPage} />
+>>>>>>> Stashed changes
       {/* <MoviesTable /> */}
       <div className="mt-5 flex w-full justify-center">
         <Pagination

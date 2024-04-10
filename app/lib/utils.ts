@@ -26,6 +26,7 @@ export const generatePagination = (currentPage: number, totalPages: number) => {
     totalPages,
   ];
 };
+<<<<<<< Updated upstream
 export function formatDate(dateString: string): string {
   const date = new Date(dateString);
   const options: Intl.DateTimeFormatOptions = {
@@ -35,6 +36,8 @@ export function formatDate(dateString: string): string {
   };
   return date.toLocaleDateString("en-US", options);
 }
+=======
+>>>>>>> Stashed changes
 export const formatDateToLocal = (
   dateStr: string,
   locale: string = "en-US"
